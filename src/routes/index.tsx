@@ -4,6 +4,12 @@ import { ArrowRight, Heart, Users, Calendar, Shield, Sparkles } from "lucide-rea
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
 import heroImg from "@/assets/hero-healthcare.jpg";
+import agmHall from "@/assets/gallery/agm-hall.jpg";
+import agmSpeaker from "@/assets/gallery/agm-speaker.jpg";
+import busExterior from "@/assets/gallery/bus-exterior.jpg";
+import busInterior1 from "@/assets/gallery/bus-interior-1.jpg";
+import busInterior2 from "@/assets/gallery/bus-interior-2.jpg";
+import busInterior3 from "@/assets/gallery/bus-interior-3.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -122,6 +128,47 @@ function HomePage() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* MOMENTS — recent gatherings */}
+      <section className="container mx-auto px-4 lg:px-8 py-16 lg:py-24">
+        <div className="flex flex-wrap items-end justify-between gap-4 mb-10">
+          <div className="max-w-2xl">
+            <span className="text-xs font-semibold uppercase tracking-widest text-primary">Moments</span>
+            <h2 className="mt-3 text-3xl lg:text-4xl font-bold text-foreground">From our recent gatherings</h2>
+            <p className="mt-3 text-muted-foreground">AGM 2025 at Mimosa Park & Island Camp — bound by care, powered by togetherness.</p>
+          </div>
+          <Button asChild variant="outline">
+            <Link to="/gallery">Open gallery <ArrowRight className="ml-2 h-4 w-4" /></Link>
+          </Button>
+        </div>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4">
+          {[
+            { src: agmHall, alt: "KHCWW Annual General Meeting hall", span: "col-span-2 lg:col-span-2 lg:row-span-2 aspect-[4/3] lg:aspect-auto" },
+            { src: agmSpeaker, alt: "Member addressing the AGM", span: "aspect-square" },
+            { src: busExterior, alt: "Team building transport", span: "aspect-square" },
+            { src: busInterior1, alt: "Members travelling together", span: "aspect-square" },
+            { src: busInterior2, alt: "Colleagues on the road", span: "aspect-square" },
+            { src: busInterior3, alt: "Sharing the journey", span: "col-span-2 aspect-[2/1]" },
+          ].map((img, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.45, delay: i * 0.05 }}
+              className={`group relative overflow-hidden rounded-2xl border border-border/60 shadow-soft ${img.span}`}
+            >
+              <img
+                src={img.src}
+                alt={img.alt}
+                loading="lazy"
+                className="absolute inset-0 h-full w-full object-cover group-hover:scale-105 transition-smooth duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-foreground/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-smooth" />
+            </motion.div>
+          ))}
         </div>
       </section>
 
