@@ -1,9 +1,10 @@
 import { Link, useLocation } from "@tanstack/react-router";
 import { useState } from "react";
-import { Menu, X, HeartPulse } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/AuthContext";
 import { cn } from "@/lib/utils";
+import logo from "@/assets/khcww-logo.png";
 
 const links = [
   { to: "/", label: "Home" },
@@ -23,10 +24,12 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border/60 bg-background/85 backdrop-blur-lg">
       <div className="container mx-auto flex h-16 items-center justify-between px-4 lg:px-8">
-        <Link to="/" className="flex items-center gap-2.5 group">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-hero shadow-soft group-hover:shadow-glow transition-smooth">
-            <HeartPulse className="h-5 w-5 text-primary-foreground" strokeWidth={2.5} />
-          </div>
+        <Link to="/" className="flex items-center gap-3 group">
+          <img
+            src={logo}
+            alt="KHCWW logo"
+            className="h-11 w-11 rounded-full object-contain bg-white ring-1 ring-border shadow-soft group-hover:shadow-glow transition-smooth"
+          />
           <div className="leading-tight">
             <div className="font-display text-base font-bold text-foreground">KHCWW</div>
             <div className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">Healthcare Welfare</div>

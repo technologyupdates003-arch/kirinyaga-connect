@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Heart, Users, Calendar, Shield, Sparkles } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
-import heroImg from "@/assets/hero-healthcare.jpg";
+import logo from "@/assets/khcww-logo.png";
 import agmHall from "@/assets/gallery/agm-hall.jpg";
 import agmSpeaker from "@/assets/gallery/agm-speaker.jpg";
 import busExterior from "@/assets/gallery/bus-exterior.jpg";
@@ -76,11 +76,31 @@ function HomePage() {
               className="relative"
             >
               <div className="absolute -inset-4 bg-gradient-hero rounded-3xl blur-2xl opacity-25" />
-              <img
-                src={heroImg}
-                alt="Healthcare workers from Kirinyaga County standing together"
-                className="relative rounded-3xl shadow-elegant w-full object-cover aspect-[4/5] sm:aspect-[5/4]"
-              />
+              <div className="relative grid grid-cols-6 grid-rows-6 gap-3 rounded-3xl">
+                <img
+                  src={agmHall}
+                  alt="KHCWW Annual General Meeting hall"
+                  className="col-span-4 row-span-4 h-full w-full rounded-2xl object-cover shadow-elegant"
+                />
+                <img
+                  src={busExterior}
+                  alt="KHCWW members at team building"
+                  className="col-span-2 row-span-3 h-full w-full rounded-2xl object-cover shadow-soft"
+                />
+                <img
+                  src={agmSpeaker}
+                  alt="Member addressing the AGM"
+                  className="col-span-2 row-span-3 h-full w-full rounded-2xl object-cover shadow-soft"
+                />
+                <img
+                  src={busInterior1}
+                  alt="Members travelling together"
+                  className="col-span-3 row-span-2 h-full w-full rounded-2xl object-cover shadow-soft"
+                />
+                <div className="col-span-3 row-span-2 rounded-2xl bg-gradient-hero shadow-elegant flex items-center justify-center p-4">
+                  <img src={logo} alt="KHCWW logo" className="h-full w-auto object-contain rounded-full bg-white p-1" />
+                </div>
+              </div>
               <div className="absolute -bottom-5 -left-5 bg-card border border-border rounded-2xl shadow-soft p-4 hidden sm:flex items-center gap-3">
                 <div className="h-10 w-10 rounded-xl bg-accent flex items-center justify-center">
                   <Heart className="h-5 w-5 text-accent-foreground" />

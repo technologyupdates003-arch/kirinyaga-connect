@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import { HeartPulse, Mail, MapPin } from "lucide-react";
+import { Mail, MapPin } from "lucide-react";
+import logo from "@/assets/khcww-logo.png";
 
 export function Footer() {
   return (
@@ -7,10 +8,12 @@ export function Footer() {
       <div className="container mx-auto px-4 lg:px-8 py-12">
         <div className="grid gap-10 md:grid-cols-4">
           <div className="md:col-span-2">
-            <div className="flex items-center gap-2.5">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-hero shadow-soft">
-                <HeartPulse className="h-5 w-5 text-primary-foreground" strokeWidth={2.5} />
-              </div>
+            <div className="flex items-center gap-3">
+              <img
+                src={logo}
+                alt="KHCWW logo"
+                className="h-11 w-11 rounded-full object-contain bg-white ring-1 ring-border shadow-soft"
+              />
               <div className="leading-tight">
                 <div className="font-display font-bold text-foreground">KHCWW</div>
                 <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Kirinyaga Healthcare Workers' Welfare</div>
