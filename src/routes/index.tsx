@@ -27,14 +27,14 @@ import busInterior1 from "@/assets/gallery/bus-interior-1.jpg";
 import busInterior2 from "@/assets/gallery/bus-interior-2.jpg";
 import busInterior3 from "@/assets/gallery/bus-interior-3.jpg";
 
+import { pageSeo } from "@/lib/seo";
+
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "KHCWW — Kirinyaga Healthcare Workers' Welfare" },
-      { name: "description", content: "A welfare organisation uniting healthcare workers in Kirinyaga County through unity, mutual support, advocacy, and social growth." },
-      { property: "og:title", content: "KHCWW — Healthcare Workers' Welfare, Kirinyaga" },
-      { property: "og:description", content: "Standing together for the people who care for our community." },
-    ],
+  head: () => pageSeo({
+    path: "/",
+    title: "KHCWW — Kirinyaga Healthcare Workers' Welfare",
+    description: "A welfare organisation uniting healthcare workers in Kirinyaga County through unity, mutual support, advocacy, and social growth.",
+    keywords: "KHCWW, Kirinyaga Healthcare Workers Welfare, healthcare workers Kenya, Kirinyaga County welfare, nurses welfare, medical workers association",
   }),
   component: HomePage,
 });

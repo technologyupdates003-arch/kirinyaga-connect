@@ -3,14 +3,14 @@ import { motion } from "framer-motion";
 import { Crown, Shield, FileText, ScrollText, Wallet, Sparkles } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 
+import { pageSeo } from "@/lib/seo";
+
 export const Route = createFileRoute("/team")({
-  head: () => ({
-    meta: [
-      { title: "Leadership — KHCWW" },
-      { name: "description", content: "Meet the office bearers of Kirinyaga Healthcare Workers' Welfare." },
-      { property: "og:title", content: "KHCWW Leadership" },
-      { property: "og:description", content: "Office bearers leading the welfare on behalf of all members." },
-    ],
+  head: () => pageSeo({
+    path: "/team",
+    title: "Leadership & Office Bearers — KHCWW",
+    description: "Meet the office bearers of Kirinyaga Healthcare Workers' Welfare leading our community of healthcare professionals.",
+    keywords: "KHCWW leadership, office bearers, welfare chairperson, Kirinyaga healthcare team",
   }),
   component: TeamPage,
 });

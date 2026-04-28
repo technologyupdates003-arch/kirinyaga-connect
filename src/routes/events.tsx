@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { supabase } from "@/integrations/supabase/client";
 
+import { pageSeo } from "@/lib/seo";
+
 type EventRow = {
   id: string;
   title: string;
@@ -15,13 +17,11 @@ type EventRow = {
 };
 
 export const Route = createFileRoute("/events")({
-  head: () => ({
-    meta: [
-      { title: "Events — KHCWW" },
-      { name: "description", content: "Upcoming and past events from Kirinyaga Healthcare Workers' Welfare — AGMs, team building, and welfare meetings." },
-      { property: "og:title", content: "KHCWW Events" },
-      { property: "og:description", content: "AGM, team building, and welfare gatherings for healthcare workers in Kirinyaga." },
-    ],
+  head: () => pageSeo({
+    path: "/events",
+    title: "Events — KHCWW Meetings, AGM & Team Building",
+    description: "Upcoming and past events from Kirinyaga Healthcare Workers' Welfare — AGMs, team building, and welfare meetings.",
+    keywords: "KHCWW events, healthcare AGM Kirinyaga, team building, welfare meetings",
   }),
   component: EventsPage,
 });

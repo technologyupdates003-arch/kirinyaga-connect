@@ -3,14 +3,14 @@ import { motion } from "framer-motion";
 import { Users, HeartHandshake, PartyPopper, TrendingUp } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 
+import { pageSeo } from "@/lib/seo";
+
 export const Route = createFileRoute("/about")({
-  head: () => ({
-    meta: [
-      { title: "About — KHCWW" },
-      { name: "description", content: "Learn about Kirinyaga Healthcare Workers' Welfare — our mission, values, and objectives drawn from our constitution." },
-      { property: "og:title", content: "About KHCWW" },
-      { property: "og:description", content: "A welfare organisation built on unity, support, engagement and growth." },
-    ],
+  head: () => pageSeo({
+    path: "/about",
+    title: "About KHCWW — Our Mission, Values & Objectives",
+    description: "Learn about Kirinyaga Healthcare Workers' Welfare — our mission, values, and objectives drawn from our constitution.",
+    keywords: "about KHCWW, healthcare welfare mission, Kirinyaga healthcare community",
   }),
   component: AboutPage,
 });
