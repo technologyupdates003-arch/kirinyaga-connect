@@ -12,14 +12,14 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { supabase } from "@/integrations/supabase/client";
 
+import { pageSeo } from "@/lib/seo";
+
 export const Route = createFileRoute("/contact")({
-  head: () => ({
-    meta: [
-      { title: "Contact — KHCWW" },
-      { name: "description", content: "Get in touch with Kirinyaga Healthcare Workers' Welfare." },
-      { property: "og:title", content: "Contact KHCWW" },
-      { property: "og:description", content: "Reach out to the welfare via email or our contact form." },
-    ],
+  head: () => pageSeo({
+    path: "/contact",
+    title: "Contact KHCWW — Get in Touch",
+    description: "Contact Kirinyaga Healthcare Workers' Welfare. Reach out via email or our contact form for inquiries and support.",
+    keywords: "contact KHCWW, healthcare welfare contact, Kirinyaga welfare email",
   }),
   component: ContactPage,
 });
