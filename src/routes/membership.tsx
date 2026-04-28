@@ -3,14 +3,14 @@ import { Check, ArrowRight } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
 
+import { pageSeo } from "@/lib/seo";
+
 export const Route = createFileRoute("/membership")({
-  head: () => ({
-    meta: [
-      { title: "Membership — KHCWW" },
-      { name: "description", content: "Membership in Kirinyaga Healthcare Workers' Welfare is voluntary and open to all healthcare workers in Kirinyaga County." },
-      { property: "og:title", content: "Membership — KHCWW" },
-      { property: "og:description", content: "Voluntary membership for healthcare workers in Kirinyaga County." },
-    ],
+  head: () => pageSeo({
+    path: "/membership",
+    title: "Membership — Join KHCWW",
+    description: "Membership in Kirinyaga Healthcare Workers' Welfare is voluntary and open to all healthcare workers in Kirinyaga County.",
+    keywords: "join KHCWW, healthcare worker membership, Kirinyaga welfare registration",
   }),
   component: MembershipPage,
 });
