@@ -23,6 +23,20 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border/60 bg-background/85 backdrop-blur-lg">
+      {/* Utility bar */}
+      <div className="hidden md:block bg-accent text-accent-foreground text-xs">
+        <div className="container mx-auto px-4 lg:px-8 h-9 flex items-center justify-between">
+          <div className="flex items-center gap-5">
+            <span>📞 +254 700 000 000</span>
+            <span>✉ Khcww2020@gmail.com</span>
+            <span>📍 KCRH, Kirinyaga County</span>
+          </div>
+          <div className="flex items-center gap-4">
+            <span className="opacity-80">Mon – Fri · 8:00 – 17:00</span>
+            <Link to="/register" className="font-semibold text-primary-foreground bg-primary px-3 py-1 rounded-full hover:opacity-90 transition-smooth">Become a member</Link>
+          </div>
+        </div>
+      </div>
       <div className="container mx-auto flex h-16 items-center justify-between px-4 lg:px-8">
         <Link to="/" className="flex items-center gap-3 group">
           <img
