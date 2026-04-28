@@ -5,14 +5,14 @@ import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 
+import { pageSeo } from "@/lib/seo";
+
 export const Route = createFileRoute("/gallery")({
-  head: () => ({
-    meta: [
-      { title: "Gallery — KHCWW" },
-      { name: "description", content: "Photo gallery from KHCWW events including AGM and team building activities." },
-      { property: "og:title", content: "KHCWW Gallery" },
-      { property: "og:description", content: "Memories from our welfare's events and gatherings." },
-    ],
+  head: () => pageSeo({
+    path: "/gallery",
+    title: "Photo Gallery — KHCWW Events & Team Building",
+    description: "Photo gallery from KHCWW events including AGM and team building activities across Kirinyaga County.",
+    keywords: "KHCWW gallery, healthcare workers photos, AGM photos, team building gallery",
   }),
   component: GalleryPage,
 });
