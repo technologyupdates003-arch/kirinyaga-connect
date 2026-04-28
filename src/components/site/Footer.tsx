@@ -52,7 +52,9 @@ export function Footer() {
 
         <div className="mt-10 pt-6 border-t border-border/60 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
           <p>© {new Date().getFullYear()} Kirinyaga Healthcare Workers' Welfare. All rights reserved.</p>
-          <p>Built with care for our community.</p>
+          <p>
+            Developed by <span className="font-semibold text-primary">Dennis Murimi</span>
+          </p>
         </div>
       </div>
     </footer>
