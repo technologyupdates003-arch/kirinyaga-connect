@@ -18,8 +18,8 @@ import {
 } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import logo from "@/assets/khcww-logo.png";
+import { site } from "@/content/site";
 import agmHall from "@/assets/gallery/agm-hall.jpg";
 import agmSpeaker from "@/assets/gallery/agm-speaker.jpg";
 import busExterior from "@/assets/gallery/bus-exterior.jpg";
@@ -39,12 +39,7 @@ export const Route = createFileRoute("/")({
   component: HomePage,
 });
 
-const stats = [
-  { value: "500+", label: "Active members" },
-  { value: "12", label: "Sub-counties reached" },
-  { value: "40+", label: "Welfare events held" },
-  { value: "5", label: "Years of service" },
-];
+const stats = site.stats;
 
 const programs = [
   {
@@ -69,11 +64,12 @@ const programs = [
   },
 ];
 
-const updates = [
-  { date: "Aug 2025", tag: "AGM", title: "2025 Annual General Meeting at Mimosa Park", excerpt: "Members convened to review the year, elect new officials, and adopt our forward roadmap." },
-  { date: "Jul 2025", tag: "Team Building", title: "Island Camp retreat strengthens member bonds", excerpt: "A weekend of reflection, recreation and renewed purpose for our growing welfare family." },
-  { date: "Jun 2025", tag: "Outreach", title: "County-wide healthcare worker registration drive", excerpt: "New members from across sub-counties joined the welfare under our open membership policy." },
-];
+const updates = site.events.slice(0, 3).map((e) => ({
+  date: e.date ? new Date(e.date).toLocaleDateString("en-US", { month: "short", year: "numeric" }) : "",
+  tag: "Event",
+  title: e.title,
+  excerpt: e.description ?? "",
+}));
 
 function HomePage() {
   return (
@@ -98,7 +94,7 @@ function HomePage() {
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Button asChild size="lg" className="bg-gradient-hero text-primary-foreground hover:opacity-90 shadow-elegant">
-                  <Link to="/register">Become a member <ArrowRight className="ml-2 h-4 w-4" /></Link>
+                  <Link to="/membership">Become a member <ArrowRight className="ml-2 h-4 w-4" /></Link>
                 </Button>
                 <Button asChild size="lg" variant="outline">
                   <Link to="/about">Our mission</Link>
@@ -370,7 +366,7 @@ function HomePage() {
               </p>
               <div className="mt-7 flex flex-wrap gap-3">
                 <Button asChild size="lg" variant="secondary" className="shadow-soft">
-                  <Link to="/register">Register as a member</Link>
+                  <Link to="/membership">Become a member</Link>
                 </Button>
                 <Button asChild size="lg" variant="outline" className="bg-transparent border-primary-foreground/40 text-primary-foreground hover:bg-primary-foreground/10">
                   <Link to="/contact">Contact us</Link>
@@ -378,13 +374,12 @@ function HomePage() {
               </div>
             </div>
             <div className="bg-card/95 backdrop-blur rounded-2xl p-6 shadow-soft">
-              <div className="flex items-center gap-2 text-primary"><Mail className="h-5 w-5" /><span className="font-semibold">Stay in the loop</span></div>
-              <p className="mt-2 text-sm text-muted-foreground">Get welfare announcements, event invites and updates straight to your inbox.</p>
-              <form className="mt-4 flex gap-2" onSubmit={(e) => e.preventDefault()}>
-                <Input type="email" placeholder="you@example.com" required />
-                <Button type="submit">Subscribe</Button>
-              </form>
-              <p className="mt-3 text-[11px] text-muted-foreground">We respect your privacy. Unsubscribe anytime.</p>
+              <div className="flex items-center gap-2 text-primary"><Mail className="h-5 w-5" /><span className="font-semibold">Get in touch</span></div>
+              <p className="mt-2 text-sm text-muted-foreground">Have questions about membership or the welfare? We'd love to hear from you.</p>
+              <Button asChild className="mt-4 w-full bg-gradient-hero text-primary-foreground">
+                <Link to="/contact">Contact KHCWW</Link>
+              </Button>
+              <p className="mt-3 text-[11px] text-muted-foreground">Email {site.organisation.email}</p>
             </div>
           </div>
         </div>

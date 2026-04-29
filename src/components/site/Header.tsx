@@ -1,10 +1,9 @@
 import { Link, useLocation } from "@tanstack/react-router";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { useAuth } from "@/contexts/AuthContext";
 import { cn } from "@/lib/utils";
 import logo from "@/assets/khcww-logo.png";
+import { site } from "@/content/site";
 
 const links = [
   { to: "/", label: "Home" },
@@ -18,8 +17,8 @@ const links = [
 
 export function Header() {
   const [open, setOpen] = useState(false);
-  const { user, isAdmin, signOut } = useAuth();
   const location = useLocation();
+  const org = site.organisation;
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border/60 bg-background/85 backdrop-blur-lg">
@@ -27,13 +26,13 @@ export function Header() {
       <div className="hidden md:block bg-accent text-accent-foreground text-xs">
         <div className="container mx-auto px-4 lg:px-8 h-9 flex items-center justify-between">
           <div className="flex items-center gap-5">
-            <span>📞 +254 700 000 000</span>
-            <span>✉ Khcww2020@gmail.com</span>
-            <span>📍 KCRH, Kirinyaga County</span>
+            <span>📞 {org.phone}</span>
+            <span>✉ {org.email}</span>
+            <span>📍 {org.location}</span>
           </div>
           <div className="flex items-center gap-4">
-            <span className="opacity-80">Mon – Fri · 8:00 – 17:00</span>
-            <Link to="/register" className="font-semibold text-primary-foreground bg-primary px-3 py-1 rounded-full hover:opacity-90 transition-smooth">Become a member</Link>
+            <span className="opacity-80">{org.hours}</span>
+            <Link to="/contact" className="font-semibold text-primary-foreground bg-primary px-3 py-1 rounded-full hover:opacity-90 transition-smooth">Contact us</Link>
           </div>
         </div>
       </div>
@@ -45,8 +44,8 @@ export function Header() {
             className="h-11 w-11 rounded-full object-contain bg-white ring-1 ring-border shadow-soft group-hover:shadow-glow transition-smooth"
           />
           <div className="leading-tight">
-            <div className="font-display text-base font-bold text-foreground">KHCWW</div>
-            <div className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">Healthcare Welfare</div>
+            <div className="font-display text-base font-bold text-foreground">{org.shortName}</div>
+            <div className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">{org.tagline}</div>
           </div>
         </Link>
 
@@ -70,31 +69,6 @@ export function Header() {
           })}
         </nav>
 
-        <div className="hidden lg:flex items-center gap-2">
-          {user ? (
-            <>
-              <Button asChild variant="ghost" size="sm">
-                <Link to="/dashboard">Dashboard</Link>
-              </Button>
-              {isAdmin && (
-                <Button asChild variant="ghost" size="sm">
-                  <Link to="/admin">Admin</Link>
-                </Button>
-              )}
-              <Button variant="outline" size="sm" onClick={signOut}>Sign out</Button>
-            </>
-          ) : (
-            <>
-              <Button asChild variant="ghost" size="sm">
-                <Link to="/login">Sign in</Link>
-              </Button>
-              <Button asChild size="sm" className="bg-gradient-hero text-primary-foreground hover:opacity-90 shadow-soft">
-                <Link to="/register">Join welfare</Link>
-              </Button>
-            </>
-          )}
-        </div>
-
         <button
           className="lg:hidden p-2 rounded-lg hover:bg-secondary"
           onClick={() => setOpen((v) => !v)}
@@ -117,21 +91,6 @@ export function Header() {
                 {l.label}
               </Link>
             ))}
-            <div className="h-px bg-border my-2" />
-            {user ? (
-              <>
-                <Link to="/dashboard" onClick={() => setOpen(false)} className="px-3 py-2.5 text-sm font-medium rounded-lg hover:bg-secondary">Dashboard</Link>
-                {isAdmin && <Link to="/admin" onClick={() => setOpen(false)} className="px-3 py-2.5 text-sm font-medium rounded-lg hover:bg-secondary">Admin</Link>}
-                <Button variant="outline" size="sm" onClick={() => { signOut(); setOpen(false); }}>Sign out</Button>
-              </>
-            ) : (
-              <>
-                <Link to="/login" onClick={() => setOpen(false)} className="px-3 py-2.5 text-sm font-medium rounded-lg hover:bg-secondary">Sign in</Link>
-                <Button asChild size="sm" className="bg-gradient-hero text-primary-foreground">
-                  <Link to="/register" onClick={() => setOpen(false)}>Join welfare</Link>
-                </Button>
-              </>
-            )}
           </div>
         </div>
       )}
