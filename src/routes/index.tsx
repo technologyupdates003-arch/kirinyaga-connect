@@ -366,7 +366,7 @@ function HomePage() {
               </p>
               <div className="mt-7 flex flex-wrap gap-3">
                 <Button asChild size="lg" variant="secondary" className="shadow-soft">
-                  <Link to="/register">Register as a member</Link>
+                  <Link to="/membership">Become a member</Link>
                 </Button>
                 <Button asChild size="lg" variant="outline" className="bg-transparent border-primary-foreground/40 text-primary-foreground hover:bg-primary-foreground/10">
                   <Link to="/contact">Contact us</Link>
@@ -374,14 +374,14 @@ function HomePage() {
               </div>
             </div>
             <div className="bg-card/95 backdrop-blur rounded-2xl p-6 shadow-soft">
-              <div className="flex items-center gap-2 text-primary"><Mail className="h-5 w-5" /><span className="font-semibold">Stay in the loop</span></div>
-              <p className="mt-2 text-sm text-muted-foreground">Get welfare announcements, event invites and updates straight to your inbox.</p>
-              <form className="mt-4 flex gap-2" onSubmit={(e) => e.preventDefault()}>
-                <Input type="email" placeholder="you@example.com" required />
-                <Button type="submit">Subscribe</Button>
-              </form>
-              <p className="mt-3 text-[11px] text-muted-foreground">We respect your privacy. Unsubscribe anytime.</p>
+              <div className="flex items-center gap-2 text-primary"><Mail className="h-5 w-5" /><span className="font-semibold">Get in touch</span></div>
+              <p className="mt-2 text-sm text-muted-foreground">Have questions about membership or the welfare? We'd love to hear from you.</p>
+              <Button asChild className="mt-4 w-full bg-gradient-hero text-primary-foreground">
+                <Link to="/contact">Contact KHCWW</Link>
+              </Button>
+              <p className="mt-3 text-[11px] text-muted-foreground">Email {site.organisation.email}</p>
             </div>
+          </div>
           </div>
         </div>
       </section>
