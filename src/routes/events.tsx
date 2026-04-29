@@ -1,20 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { Calendar, MapPin } from "lucide-react";
-import { useEffect, useState } from "react";
 import { SiteLayout } from "@/components/site/SiteLayout";
-import { supabase } from "@/integrations/supabase/client";
+import { site } from "@/content/site";
 
 import { pageSeo } from "@/lib/seo";
-
-type EventRow = {
-  id: string;
-  title: string;
-  event_date: string | null;
-  description: string | null;
-  cover_image_url: string | null;
-  location: string | null;
-};
 
 export const Route = createFileRoute("/events")({
   head: () => pageSeo({
@@ -32,21 +22,8 @@ function formatDate(d: string | null) {
 }
 
 function EventsPage() {
-  const [events, setEvents] = useState<EventRow[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [galleryUrl, setGalleryUrl] = useState<string | null>(null);
-
-  useEffect(() => {
-    (async () => {
-      const [{ data: ev }, { data: settings }] = await Promise.all([
-        supabase.from("events").select("*").order("event_date", { ascending: false }),
-        supabase.from("site_settings").select("gallery_url").eq("id", 1).maybeSingle(),
-      ]);
-      setEvents(ev ?? []);
-      setGalleryUrl(settings?.gallery_url ?? null);
-      setLoading(false);
-    })();
-  }, []);
+  const events = [...site.events].sort((a, b) => (b.date ?? "").localeCompare(a.date ?? ""));
+  const galleryUrl = site.galleryUrl;
 
   return (
     <SiteLayout>
@@ -59,13 +36,7 @@ function EventsPage() {
           </p>
         </div>
 
-        {loading ? (
-          <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {Array.from({ length: 6 }).map((_, i) => (
-              <div key={i} className="aspect-[4/3] rounded-2xl bg-muted animate-pulse" />
-            ))}
-          </div>
-        ) : events.length === 0 ? (
+        {events.length === 0 ? (
           <p className="mt-12 text-muted-foreground">No events yet. Please check back soon.</p>
         ) : (
           <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -79,26 +50,17 @@ function EventsPage() {
                 className="group bg-gradient-card border border-border/60 rounded-2xl overflow-hidden shadow-soft hover:shadow-elegant transition-smooth"
               >
                 <div className="aspect-[16/10] overflow-hidden bg-secondary">
-                  {e.cover_image_url ? (
-                    <img
-                      src={e.cover_image_url}
-                      alt={e.title}
-                      loading="lazy"
-                      className="h-full w-full object-cover group-hover:scale-105 transition-smooth duration-500"
-                    />
-                  ) : (
-                    <div className="h-full w-full bg-gradient-hero flex items-center justify-center">
-                      <Calendar className="h-12 w-12 text-primary-foreground/70" />
-                    </div>
-                  )}
+                  <div className="h-full w-full bg-gradient-hero flex items-center justify-center">
+                    <Calendar className="h-12 w-12 text-primary-foreground/70" />
+                  </div>
                 </div>
                 <div className="p-6">
                   <h3 className="font-display text-lg font-semibold text-foreground leading-snug">{e.title}</h3>
-                  {(e.event_date || e.location) && (
+                  {(e.date || e.location) && (
                     <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted-foreground">
-                      {e.event_date && (
+                      {e.date && (
                         <span className="inline-flex items-center gap-1.5">
-                          <Calendar className="h-3.5 w-3.5" /> {formatDate(e.event_date)}
+                          <Calendar className="h-3.5 w-3.5" /> {formatDate(e.date)}
                         </span>
                       )}
                       {e.location && (

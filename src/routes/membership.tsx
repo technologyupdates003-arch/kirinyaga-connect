@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Check, ArrowRight } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
+import { site } from "@/content/site";
 
 import { pageSeo } from "@/lib/seo";
 
@@ -23,6 +24,7 @@ const points = [
 ];
 
 function MembershipPage() {
+  const org = site.organisation;
   return (
     <SiteLayout>
       <section className="container mx-auto px-4 lg:px-8 py-16 lg:py-24">
@@ -31,7 +33,7 @@ function MembershipPage() {
           <h1 className="mt-3 text-4xl lg:text-5xl font-bold text-foreground">Join a community that cares.</h1>
           <p className="mt-5 text-lg text-muted-foreground leading-relaxed">
             KHCWW welcomes every healthcare worker in Kirinyaga who shares our values of unity,
-            mutual support, and growth. Here's what you should know before you register.
+            mutual support, and growth. Here's what you should know before you join.
           </p>
         </div>
 
@@ -50,16 +52,15 @@ function MembershipPage() {
           <aside className="lg:col-span-2 sticky top-24 bg-gradient-hero rounded-3xl p-8 shadow-elegant text-primary-foreground">
             <h3 className="font-display text-2xl font-bold">Ready to join?</h3>
             <p className="mt-3 text-primary-foreground/85 leading-relaxed">
-              Fill in a short registration form, upload your ID and a passport photo,
-              and a welfare officer will review your application.
+              Reach out to a welfare officer or contact us directly to begin the registration process.
             </p>
             <Button asChild size="lg" variant="secondary" className="mt-6 w-full shadow-soft">
-              <Link to="/register">
-                Register now <ArrowRight className="ml-2 h-4 w-4" />
+              <Link to="/contact">
+                Contact us to join <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
             <p className="mt-4 text-xs text-primary-foreground/70 text-center">
-              No fees on this site. No payments processed.
+              Email {org.email}
             </p>
           </aside>
         </div>

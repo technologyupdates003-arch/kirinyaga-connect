@@ -1,8 +1,10 @@
 import { Link } from "@tanstack/react-router";
-import { Mail, MapPin } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 import logo from "@/assets/khcww-logo.png";
+import { site } from "@/content/site";
 
 export function Footer() {
+  const org = site.organisation;
   return (
     <footer className="border-t border-border/60 bg-gradient-soft mt-20">
       <div className="container mx-auto px-4 lg:px-8 py-12">
@@ -15,8 +17,8 @@ export function Footer() {
                 className="h-11 w-11 rounded-full object-contain bg-white ring-1 ring-border shadow-soft"
               />
               <div className="leading-tight">
-                <div className="font-display font-bold text-foreground">KHCWW</div>
-                <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Kirinyaga Healthcare Workers' Welfare</div>
+                <div className="font-display font-bold text-foreground">{org.shortName}</div>
+                <div className="text-[10px] uppercase tracking-wider text-muted-foreground">{org.name}</div>
               </div>
             </div>
             <p className="mt-4 text-sm text-muted-foreground max-w-md leading-relaxed">
@@ -39,19 +41,23 @@ export function Footer() {
             <h4 className="text-sm font-semibold text-foreground mb-4">Reach us</h4>
             <ul className="space-y-3 text-sm text-muted-foreground">
               <li className="flex items-start gap-2">
+                <Phone className="h-4 w-4 mt-0.5 text-primary" />
+                <a href={`tel:${org.phone.replace(/\s/g, "")}`} className="hover:text-primary transition-smooth">{org.phone}</a>
+              </li>
+              <li className="flex items-start gap-2">
                 <Mail className="h-4 w-4 mt-0.5 text-primary" />
-                <a href="mailto:Khcww2020@gmail.com" className="hover:text-primary transition-smooth break-all">Khcww2020@gmail.com</a>
+                <a href={`mailto:${org.email}`} className="hover:text-primary transition-smooth break-all">{org.email}</a>
               </li>
               <li className="flex items-start gap-2">
                 <MapPin className="h-4 w-4 mt-0.5 text-primary" />
-                <span>KCRH, Kirinyaga</span>
+                <span>{org.location}</span>
               </li>
             </ul>
           </div>
         </div>
 
         <div className="mt-10 pt-6 border-t border-border/60 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
-          <p>© {new Date().getFullYear()} Kirinyaga Healthcare Workers' Welfare. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} {org.name}. All rights reserved.</p>
           <p>
             Developed by <span className="font-semibold text-primary">Dennis Murimi</span>
           </p>

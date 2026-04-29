@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { Crown, Shield, FileText, ScrollText, Wallet, Sparkles } from "lucide-react";
+import { Crown, Shield, FileText, ScrollText, Wallet, Sparkles, type LucideIcon } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
+import { site } from "@/content/site";
 
 import { pageSeo } from "@/lib/seo";
 
@@ -15,20 +16,9 @@ export const Route = createFileRoute("/team")({
   component: TeamPage,
 });
 
-const team = [
-  { role: "Chairperson", icon: Crown, color: "primary",
-    desc: "Provides overall leadership and represents the welfare in all official engagements." },
-  { role: "Vice Chairperson", icon: Shield, color: "primary",
-    desc: "Supports the Chairperson and steps in when required to lead the welfare." },
-  { role: "Secretary", icon: ScrollText, color: "primary",
-    desc: "Keeps records, communicates with members, and coordinates official welfare correspondence." },
-  { role: "Vice Secretary", icon: FileText, color: "primary",
-    desc: "Assists the Secretary and helps maintain accurate documentation of welfare activities." },
-  { role: "Treasurer", icon: Wallet, color: "primary",
-    desc: "Stewards welfare records and reports on activities to the membership." },
-  { role: "Patron", icon: Sparkles, color: "accent",
-    desc: "Provides guidance, mentorship, and continuity to the welfare's mission and values." },
-];
+const iconMap: Record<string, LucideIcon> = {
+  Crown, Shield, FileText, ScrollText, Wallet, Sparkles,
+};
 
 function TeamPage() {
   return (
@@ -43,23 +33,29 @@ function TeamPage() {
         </div>
 
         <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {team.map((m, i) => (
-            <motion.div
-              key={m.role}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.45, delay: i * 0.06 }}
-              className="bg-gradient-card border border-border/60 rounded-2xl p-7 shadow-soft hover:shadow-elegant transition-smooth"
-            >
-              <div className={`h-14 w-14 rounded-2xl flex items-center justify-center ${m.color === "accent" ? "bg-accent" : "bg-gradient-hero"} shadow-soft`}>
-                <m.icon className={`h-6 w-6 ${m.color === "accent" ? "text-accent-foreground" : "text-primary-foreground"}`} />
-              </div>
-              <h3 className="mt-5 font-display text-xl font-semibold text-foreground">{m.role}</h3>
-              <div className="mt-1 text-xs uppercase tracking-wider text-muted-foreground font-semibold">Office bearer</div>
-              <p className="mt-4 text-sm text-muted-foreground leading-relaxed">{m.desc}</p>
-            </motion.div>
-          ))}
+          {site.team.map((m, i) => {
+            const Icon = iconMap[m.icon] ?? Sparkles;
+            const isPatron = m.role.toLowerCase().includes("patron");
+            return (
+              <motion.div
+                key={m.role}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45, delay: i * 0.06 }}
+                className="bg-gradient-card border border-border/60 rounded-2xl p-7 shadow-soft hover:shadow-elegant transition-smooth"
+              >
+                <div className={`h-14 w-14 rounded-2xl flex items-center justify-center ${isPatron ? "bg-accent" : "bg-gradient-hero"} shadow-soft`}>
+                  <Icon className={`h-6 w-6 ${isPatron ? "text-accent-foreground" : "text-primary-foreground"}`} />
+                </div>
+                <h3 className="mt-5 font-display text-xl font-semibold text-foreground">{m.role}</h3>
+                <div className="mt-1 text-xs uppercase tracking-wider text-muted-foreground font-semibold">
+                  {m.name || "Office bearer"}
+                </div>
+                <p className="mt-4 text-sm text-muted-foreground leading-relaxed">{m.desc}</p>
+              </motion.div>
+            );
+          })}
         </div>
 
         <div className="mt-12 p-6 rounded-2xl border border-border/60 bg-secondary/40 text-sm text-muted-foreground">
