@@ -382,7 +382,6 @@ function HomePage() {
               <p className="mt-3 text-[11px] text-muted-foreground">Email {site.organisation.email}</p>
             </div>
           </div>
-          </div>
         </div>
       </section>
     </SiteLayout>
