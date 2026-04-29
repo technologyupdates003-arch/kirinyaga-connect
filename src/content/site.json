@@ -1,0 +1,56 @@
+{
+  "_comment": "Edit this file to update site content. After editing, rebuild and re-upload to DirectAdmin.",
+  "organisation": {
+    "name": "Kirinyaga Healthcare Workers' Welfare",
+    "shortName": "KHCWW",
+    "tagline": "Healthcare Welfare",
+    "email": "Khcww2020@gmail.com",
+    "phone": "+254 700 000 000",
+    "location": "KCRH, Kirinyaga County, Kenya",
+    "hours": "Mon – Fri · 8:00 – 17:00"
+  },
+  "stats": [
+    { "value": "500+", "label": "Active members" },
+    { "value": "12", "label": "Sub-counties reached" },
+    { "value": "40+", "label": "Welfare events held" },
+    { "value": "5", "label": "Years of service" }
+  ],
+  "events": [
+    {
+      "id": "agm-2025",
+      "title": "2025 Annual General Meeting at Mimosa Park",
+      "date": "2025-08-15",
+      "location": "Mimosa Park, Kirinyaga",
+      "description": "Members convened to review the year, elect new officials, and adopt our forward roadmap."
+    },
+    {
+      "id": "team-building-2025",
+      "title": "Island Camp Team Building Retreat",
+      "date": "2025-07-12",
+      "location": "Island Camp",
+      "description": "A weekend of reflection, recreation and renewed purpose for our growing welfare family."
+    },
+    {
+      "id": "registration-drive-2025",
+      "title": "County-wide Healthcare Worker Registration Drive",
+      "date": "2025-06-20",
+      "location": "Across Kirinyaga sub-counties",
+      "description": "New members from across sub-counties joined the welfare under our open membership policy."
+    }
+  ],
+  "team": [
+    { "role": "Chairperson", "name": "", "icon": "Crown",
+      "desc": "Provides overall leadership and represents the welfare in all official engagements." },
+    { "role": "Vice Chairperson", "name": "", "icon": "Shield",
+      "desc": "Supports the Chairperson and steps in when required to lead the welfare." },
+    { "role": "Secretary", "name": "", "icon": "ScrollText",
+      "desc": "Keeps records, communicates with members, and coordinates official welfare correspondence." },
+    { "role": "Vice Secretary", "name": "", "icon": "FileText",
+      "desc": "Assists the Secretary and helps maintain accurate documentation of welfare activities." },
+    { "role": "Treasurer", "name": "", "icon": "Wallet",
+      "desc": "Stewards welfare records and reports on activities to the membership." },
+    { "role": "Patron", "name": "", "icon": "Sparkles",
+      "desc": "Provides guidance, mentorship, and continuity to the welfare's mission and values." }
+  ],
+  "galleryUrl": ""
+}
