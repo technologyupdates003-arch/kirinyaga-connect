@@ -1,9 +1,10 @@
 import { Link, useLocation } from "@tanstack/react-router";
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Shield } from "lucide-react";
 import { cn } from "@/lib/utils";
 import logo from "@/assets/khcww-logo.png";
 import { site } from "@/content/site";
+import { useAuth } from "@/contexts/AuthContext";
 
 const links = [
   { to: "/", label: "Home" },
@@ -19,6 +20,7 @@ export function Header() {
   const [open, setOpen] = useState(false);
   const location = useLocation();
   const org = site.organisation;
+  const { isAdmin } = useAuth();
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border/60 bg-background/85 backdrop-blur-lg">
@@ -67,6 +69,11 @@ export function Header() {
               </Link>
             );
           })}
+          {isAdmin && (
+            <Link to="/admin" className="ml-2 inline-flex items-center gap-1.5 px-3 py-2 text-sm font-semibold rounded-lg bg-primary text-primary-foreground hover:opacity-90 transition-smooth">
+              <Shield className="h-3.5 w-3.5" /> Admin
+            </Link>
+          )}
         </nav>
 
         <button

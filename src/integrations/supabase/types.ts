@@ -40,32 +40,47 @@ export type Database = {
       }
       events: {
         Row: {
+          agenda: string | null
           cover_image_url: string | null
           created_at: string
           description: string | null
           event_date: string | null
+          event_time: string | null
+          gallery_url: string | null
           id: string
           location: string | null
+          rsvp_url: string | null
+          status: string
           title: string
           updated_at: string
         }
         Insert: {
+          agenda?: string | null
           cover_image_url?: string | null
           created_at?: string
           description?: string | null
           event_date?: string | null
+          event_time?: string | null
+          gallery_url?: string | null
           id?: string
           location?: string | null
+          rsvp_url?: string | null
+          status?: string
           title: string
           updated_at?: string
         }
         Update: {
+          agenda?: string | null
           cover_image_url?: string | null
           created_at?: string
           description?: string | null
           event_date?: string | null
+          event_time?: string | null
+          gallery_url?: string | null
           id?: string
           location?: string | null
+          rsvp_url?: string | null
+          status?: string
           title?: string
           updated_at?: string
         }
@@ -172,6 +187,42 @@ export type Database = {
         Update: {
           gallery_url?: string | null
           id?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      team_members: {
+        Row: {
+          created_at: string
+          description: string | null
+          display_order: number
+          icon: string
+          id: string
+          name: string
+          photo_url: string | null
+          role: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          display_order?: number
+          icon?: string
+          id?: string
+          name?: string
+          photo_url?: string | null
+          role: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          display_order?: number
+          icon?: string
+          id?: string
+          name?: string
+          photo_url?: string | null
+          role?: string
           updated_at?: string
         }
         Relationships: []
