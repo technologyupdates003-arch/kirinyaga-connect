@@ -9,11 +9,15 @@ import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/login")({
   component: LoginPage,
+  validateSearch: (s: Record<string, unknown>) => ({
+    next: typeof s.next === "string" ? s.next : undefined,
+  }),
   head: () => ({ meta: [{ title: "Sign in — KHCWW Admin" }, { name: "robots", content: "noindex" }] }),
 });
 
 function LoginPage() {
   const navigate = useNavigate();
+  const { next } = Route.useSearch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -25,7 +29,11 @@ function LoginPage() {
     setLoading(false);
     if (error) return toast.error(error.message);
     toast.success("Welcome back");
-    navigate({ to: "/admin" });
+    if (next && next.startsWith("/") && !next.startsWith("//")) {
+      window.location.href = next;
+    } else {
+      navigate({ to: "/admin" });
+    }
   };
 
   return (
